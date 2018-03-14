@@ -8,49 +8,31 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
+import org.bukkit.material.MaterialData;
+
+import me.drkmatr1984.blockstorageapi.objects.blocks.blockdata.SMaterialData;
 
 @SuppressWarnings("deprecation")
 public class SBlock implements Serializable{
 	
 	private static final long serialVersionUID = -5944092517430475805L;
 	
-	public String world;
-	public String mat;
-	public UUID breakingEntity;
-	public int x;
-	public int y;
-	public int z;
-	public byte data;
+	private String world = null;
+	private String mat = null;
+	private UUID breakingEntity = null;
+	private Integer x = null;
+	private Integer y = null;
+	private Integer z = null;
+	private Byte data = null;
+	private SMaterialData materialData = null;
 	
 	
 	/*
 	//info for storing itemframes
 	public String itemInFrame;
 	public String rotation;
-	//info for storing armorstands
-	public Double bodyPoseX;
-	public Double bodyPoseY;
-	public Double bodyPoseZ;
-	public Double headPoseX;
-	public Double headPoseY;
-	public Double headPoseZ;
-	public Double leftArmPoseX;
-	public Double leftArmPoseY;
-	public Double leftArmPoseZ;
-	public Double rightArmPoseX;
-	public Double rightArmPoseY;
-	public Double rightArmPoseZ;
-	public Double leftLegPoseX;
-	public Double leftLegPoseY;
-	public Double leftLegPoseZ;
-	public Double rightLegPoseX;
-	public Double rightLegPoseY;
-	public Double rightLegPoseZ;
-	public String itemInMainHand;
-	public String itemInOffHand;
-	public String armor;*/
+	*/
 	
 	
 	public SBlock(Block block, Entity entity){
@@ -61,7 +43,8 @@ public class SBlock implements Serializable{
 		z = block.getLocation().getBlockZ();
 		mat = block.getType().name().toString();
 		data = block.getData();
-		breakingEntity = entity.getUniqueId();		
+		breakingEntity = entity.getUniqueId();
+		materialData = new SMaterialData(block.getState().getData());
 	}
 	
 	public SBlock(Block block){
@@ -97,20 +80,30 @@ public class SBlock implements Serializable{
 		breakingEntity = entity.getUniqueId();
 	}
 	
-	public Block getBlock(){
+	public Block getBaseBlock(){
 		Location l = new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
 		return l.getBlock();
 	}
 	  
 	public Location getLocation(){
-		return new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
+		if(this.getWorld()!=null) {
+			return new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
+		}
+		return null;
+	}
+	
+	public World getWorld() {
+		if(Bukkit.getServer().getWorld(this.world)!=null) {
+			return Bukkit.getServer().getWorld(this.world);
+		}
+		return null;
 	}
 	
 	public Material getType(){
 		return Material.valueOf(this.mat);
 	}
 	
-	public Entity getEntity(){
+	public Entity getBreakingEntity(){
 		for (World world : Bukkit.getWorlds()) {
 			for (Entity entity : world.getEntities()) {
 				if (entity.getUniqueId().equals(breakingEntity)){
@@ -137,9 +130,8 @@ public class SBlock implements Serializable{
 		return this.data;
 	}
 	
-	public BlockState getState(){
-		Location l = new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
-		return l.getBlock().getState();
+	public MaterialData getMaterialData() {
+		return new MaterialData(materialData.getItemType(), materialData.getData());
 	}
 	
 	/*public SBlock(ItemFrame e){
@@ -164,67 +156,5 @@ public class SBlock implements Serializable{
 		itemInFrame = InventoryUtil.toBase64(e.getItem());
 		rotation = e.getRotation().name().toString();
 		face = e.getFacing().name().toString();
-	}
-	
-	public SBlock(ArmorStand e){
-		type = "armorstand";
-		ent = null;
-		world = e.getLocation().getWorld().getName().toString();
-		x = e.getLocation().getBlockX();
-		y = e.getLocation().getBlockY();
-		z = e.getLocation().getBlockZ();
-		bodyPoseX = e.getBodyPose().getX();
-		bodyPoseY = e.getBodyPose().getY();
-		bodyPoseZ = e.getBodyPose().getZ();
-		headPoseX = e.getHeadPose().getX();
-		headPoseY = e.getHeadPose().getY();
-		headPoseZ = e.getHeadPose().getZ();
-		leftArmPoseX = e.getLeftArmPose().getX();
-		leftArmPoseY = e.getLeftArmPose().getY();
-		leftArmPoseZ = e.getLeftArmPose().getZ();
-		rightArmPoseX = e.getRightArmPose().getX();
-		rightArmPoseY = e.getRightArmPose().getY();
-		rightArmPoseZ = e.getRightArmPose().getZ();
-		leftLegPoseX = e.getLeftLegPose().getX();
-		leftLegPoseY = e.getLeftLegPose().getY();
-		leftLegPoseZ = e.getLeftLegPose().getZ();
-		rightLegPoseX = e.getRightLegPose().getX();
-		rightLegPoseY = e.getRightLegPose().getY();
-		rightLegPoseZ = e.getRightLegPose().getZ();
-		EntityEquipment inv = e.getEquipment();
-		armor = InventoryUtil.toBase64(inv.getArmorContents());
-		itemInMainHand = InventoryUtil.toBase64(inv.getItemInMainHand());
-		itemInOffHand = InventoryUtil.toBase64(inv.getItemInOffHand());
-	}
-	
-	public SBlock(ArmorStand e, Entity entity){
-		type = "armorstand";
-		ent = entity.getUniqueId();
-		world = e.getLocation().getWorld().getName().toString();
-		x = e.getLocation().getBlockX();
-		y = e.getLocation().getBlockY();
-		z = e.getLocation().getBlockZ();
-		bodyPoseX = e.getBodyPose().getX();
-		bodyPoseY = e.getBodyPose().getY();
-		bodyPoseZ = e.getBodyPose().getZ();
-		headPoseX = e.getHeadPose().getX();
-		headPoseY = e.getHeadPose().getY();
-		headPoseZ = e.getHeadPose().getZ();
-		leftArmPoseX = e.getLeftArmPose().getX();
-		leftArmPoseY = e.getLeftArmPose().getY();
-		leftArmPoseZ = e.getLeftArmPose().getZ();
-		rightArmPoseX = e.getRightArmPose().getX();
-		rightArmPoseY = e.getRightArmPose().getY();
-		rightArmPoseZ = e.getRightArmPose().getZ();
-		leftLegPoseX = e.getLeftLegPose().getX();
-		leftLegPoseY = e.getLeftLegPose().getY();
-		leftLegPoseZ = e.getLeftLegPose().getZ();
-		rightLegPoseX = e.getRightLegPose().getX();
-		rightLegPoseY = e.getRightLegPose().getY();
-		rightLegPoseZ = e.getRightLegPose().getZ();
-		EntityEquipment inv = e.getEquipment();
-		armor = InventoryUtil.toBase64(inv.getArmorContents());
-		itemInMainHand = InventoryUtil.toBase64(inv.getItemInMainHand());
-		itemInOffHand = InventoryUtil.toBase64(inv.getItemInOffHand());
 	}*/
 }

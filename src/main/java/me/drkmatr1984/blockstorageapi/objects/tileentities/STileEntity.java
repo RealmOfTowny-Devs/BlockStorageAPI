@@ -11,14 +11,14 @@ public class STileEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3687132256061126706L;
-	public String world;
-	public String tileType;
-	public UUID uid;
-	public UUID breakingEntity;
-	public int x;
-	public int y;
-	public int z;
-	public byte data;
+	private String world;
+	private String tileType;
+	private UUID uid;
+	private UUID breakingEntity;
+	private int x;
+	private int y;
+	private int z;
+	private byte data;
 	
 	public STileEntity(Entity entity) {
 		world = entity.getWorld().toString();
@@ -39,5 +39,6 @@ public class STileEntity implements Serializable{
 		y = entity.getLocation().getBlockY();
 		z = entity.getLocation().getBlockZ();
 	}
-
+	
+	
 }
