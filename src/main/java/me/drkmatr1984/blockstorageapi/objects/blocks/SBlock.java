@@ -18,7 +18,7 @@ public class SBlock implements Serializable{
 	
 	private static final long serialVersionUID = -5944092517430475805L;
 	
-	private String world = null;
+	private UUID world = null;
 	private String mat = null;
 	private UUID breakingEntity = null;
 	private Integer x = null;
@@ -37,7 +37,7 @@ public class SBlock implements Serializable{
 	
 	public SBlock(Block block, Entity entity){
 		//type = "block";
-		world = block.getLocation().getWorld().getName().toString();		
+		world = block.getLocation().getWorld().getUID();		
 		x = block.getLocation().getBlockX();
 		y = block.getLocation().getBlockY();
 		z = block.getLocation().getBlockZ();
@@ -49,7 +49,7 @@ public class SBlock implements Serializable{
 	
 	public SBlock(Block block){
 		//type = "block";
-		world = block.getLocation().getWorld().getName().toString();		
+		world = block.getLocation().getWorld().getUID();		
 		x = block.getLocation().getBlockX();
 		y = block.getLocation().getBlockY();
 		z = block.getLocation().getBlockZ();
@@ -60,7 +60,7 @@ public class SBlock implements Serializable{
 	
 	public SBlock(Location loc){
 		Block block = loc.getBlock();
-		world = block.getLocation().getWorld().getName().toString();		
+		world = block.getLocation().getWorld().getUID();		
 		x = block.getLocation().getBlockX();
 		y = block.getLocation().getBlockY();
 		z = block.getLocation().getBlockZ();
@@ -71,7 +71,7 @@ public class SBlock implements Serializable{
 	
 	public SBlock(Location loc, Entity entity){
 		Block block = loc.getBlock();
-		world = block.getLocation().getWorld().getName().toString();		
+		world = block.getLocation().getWorld().getUID();		
 		x = block.getLocation().getBlockX();
 		y = block.getLocation().getBlockY();
 		z = block.getLocation().getBlockZ();

@@ -3,42 +3,72 @@ package me.drkmatr1984.blockstorageapi.objects.tileentities;
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
-public class STileEntity implements Serializable{
+import me.drkmatr1984.blockstorageapi.objects.entities.SEntity;
+
+public class STileEntity extends SEntity implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3687132256061126706L;
-	private String world;
-	private String tileType;
-	private UUID uid;
-	private UUID breakingEntity;
-	private int x;
-	private int y;
-	private int z;
-	private byte data;
+	private String tileType = null;
+	private UUID uid = null;
+	private UUID breakingEntity = null;
+	private Integer blockX = null;
+	private Integer blockY = null;
+	private Integer blockZ = null;
 	
 	public STileEntity(Entity entity) {
-		world = entity.getWorld().toString();
+		super(entity);
 		tileType = entity.getType().toString();
-		uid = entity.getUniqueId();
 		this.breakingEntity = null;
-		x = entity.getLocation().getBlockX();
-		y = entity.getLocation().getBlockY();
-		z = entity.getLocation().getBlockZ();
+		blockX = entity.getLocation().getBlockX();
+		blockY = entity.getLocation().getBlockY();
+		blockZ = entity.getLocation().getBlockZ();
 	}
 	
 	public STileEntity(Entity entity, Entity breakingEntity) {
-		world = entity.getWorld().toString();
+		super(entity);
 		tileType = entity.getType().toString();
-		uid = entity.getUniqueId();
 		this.breakingEntity = breakingEntity.getUniqueId();
-		x = entity.getLocation().getBlockX();
-		y = entity.getLocation().getBlockY();
-		z = entity.getLocation().getBlockZ();
+		blockX = entity.getLocation().getBlockX();
+		blockY = entity.getLocation().getBlockY();
+		blockZ = entity.getLocation().getBlockZ();
 	}
 	
+	public Entity getBreakingEntity(){
+		for (World world : Bukkit.getWorlds()) {
+			for (Entity entity : world.getEntities()) {
+				if (entity.getUniqueId().equals(breakingEntity)){
+					return entity;
+	            }
+			}
+	    }
+	    return null;
+	}
 	
+	public EntityType getTileType() {
+		return EntityType.valueOf(this.tileType);
+	}
+	
+	public UUID getUUID() {
+		return this.uid;
+	}
+	
+	public int getBlockX() {
+		return this.blockX;
+	}
+	
+    public int getBlockY() {
+		return this.blockY;
+	}
+    
+    public int getBlockZ() {
+    	return this.blockZ;
+    }
 }

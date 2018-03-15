@@ -27,7 +27,7 @@ public class SMaterialData implements Serializable
 	}
 	
 	public Material getItemType() {
-		return Material.getMaterial(this.material);
+		return Material.valueOf(this.material);
 	}
 	
 	public int getItemTypeId() {
