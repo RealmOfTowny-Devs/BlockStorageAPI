@@ -17,7 +17,6 @@ public class STileEntity extends SEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = -3687132256061126706L;
 	private String tileType = null;
-	private UUID uid = null;
 	private UUID breakingEntity = null;
 	private Integer blockX = null;
 	private Integer blockY = null;
@@ -54,10 +53,6 @@ public class STileEntity extends SEntity implements Serializable{
 	
 	public EntityType getTileType() {
 		return EntityType.valueOf(this.tileType);
-	}
-	
-	public UUID getUUID() {
-		return this.uid;
 	}
 	
 	public int getBlockX() {

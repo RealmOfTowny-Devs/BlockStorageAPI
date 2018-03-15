@@ -12,22 +12,18 @@ import org.bukkit.entity.Entity;
 import org.bukkit.material.MaterialData;
 
 import me.drkmatr1984.blockstorageapi.objects.blocks.blockdata.SMaterialData;
+import me.drkmatr1984.blockstorageapi.objects.misc.SLocation;
 
 @SuppressWarnings("deprecation")
 public class SBlock implements Serializable{
 	
 	private static final long serialVersionUID = -5944092517430475805L;
 	
-	private UUID world = null;
+	private SLocation location = null;
 	private String mat = null;
 	private UUID breakingEntity = null;
-	private Integer x = null;
-	private Integer y = null;
-	private Integer z = null;
 	private Byte data = null;
-	private SMaterialData materialData = null;
-	
-	
+	private SMaterialData materialData = null;	
 	/*
 	//info for storing itemframes
 	public String itemInFrame;
@@ -36,11 +32,7 @@ public class SBlock implements Serializable{
 	
 	
 	public SBlock(Block block, Entity entity){
-		//type = "block";
-		world = block.getLocation().getWorld().getUID();		
-		x = block.getLocation().getBlockX();
-		y = block.getLocation().getBlockY();
-		z = block.getLocation().getBlockZ();
+		location = new SLocation(block.getLocation());
 		mat = block.getType().name().toString();
 		data = block.getData();
 		breakingEntity = entity.getUniqueId();
@@ -48,53 +40,46 @@ public class SBlock implements Serializable{
 	}
 	
 	public SBlock(Block block){
-		//type = "block";
-		world = block.getLocation().getWorld().getUID();		
-		x = block.getLocation().getBlockX();
-		y = block.getLocation().getBlockY();
-		z = block.getLocation().getBlockZ();
+		location = new SLocation(block.getLocation());
 		mat = block.getType().name().toString();
 		data = block.getData();
 		breakingEntity = null;
+		materialData = new SMaterialData(block.getState().getData());
 	}
 	
 	public SBlock(Location loc){
+		location = new SLocation(loc);
 		Block block = loc.getBlock();
-		world = block.getLocation().getWorld().getUID();		
-		x = block.getLocation().getBlockX();
-		y = block.getLocation().getBlockY();
-		z = block.getLocation().getBlockZ();
 		mat = block.getType().name().toString();
 		data = block.getData();
 		breakingEntity = null;
+		materialData = new SMaterialData(block.getState().getData());
 	}
 	
 	public SBlock(Location loc, Entity entity){
+		location = new SLocation(loc);
 		Block block = loc.getBlock();
-		world = block.getLocation().getWorld().getUID();		
-		x = block.getLocation().getBlockX();
-		y = block.getLocation().getBlockY();
-		z = block.getLocation().getBlockZ();
 		mat = block.getType().name().toString();
 		data = block.getData();
 		breakingEntity = entity.getUniqueId();
+		materialData = new SMaterialData(block.getState().getData());
 	}
 	
 	public Block getBaseBlock(){
-		Location l = new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
+		Location l = new Location(this.location.getWorld(), this.location.getX(), this.location.getY(), this.location.getZ());
 		return l.getBlock();
 	}
 	  
 	public Location getLocation(){
 		if(this.getWorld()!=null) {
-			return new Location(Bukkit.getServer().getWorld(this.world),this.x,this.y,this.z);
+			return new Location(this.location.getWorld(), this.location.getX(), this.location.getY(), this.location.getZ());
 		}
 		return null;
 	}
 	
 	public World getWorld() {
-		if(Bukkit.getServer().getWorld(this.world)!=null) {
-			return Bukkit.getServer().getWorld(this.world);
+		if(Bukkit.getServer().getWorld(this.location.getWorld().getUID())!=null) {
+			return Bukkit.getServer().getWorld(this.location.getWorld().getUID());
 		}
 		return null;
 	}
@@ -115,15 +100,15 @@ public class SBlock implements Serializable{
 	}
 	
 	public double getX(){
-		return this.x;
+		return this.location.getX();
 	}
 	
 	public double getY(){
-		return this.y;
+		return this.location.getY();
 	}
 	
 	public double getZ(){
-		return this.z;
+		return this.location.getZ();
 	}
 	
 	public byte getData(){

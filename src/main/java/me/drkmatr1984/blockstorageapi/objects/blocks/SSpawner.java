@@ -14,8 +14,8 @@ public class SSpawner extends SBlock implements Serializable{
 	 */
 	private static final long serialVersionUID = -7762146859080574730L;
 	//Info for Storing Spawners
-	public String entityType;
-	public int delay;
+	private String entityType = null;
+	private Integer delay = null;
 	
 	public SSpawner(Block block) {
 		super(block);

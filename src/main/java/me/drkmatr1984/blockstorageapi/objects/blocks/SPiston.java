@@ -14,10 +14,10 @@ public class SPiston extends SBlock implements Serializable{
 	 */
 	private static final long serialVersionUID = -885579843478491099L;
 	//info for storing Pistons
-	public String face;
-	public boolean isSticky;
-	public byte extensionByte;
-	public byte pistonByte;
+	private String face = null;
+	private Boolean isSticky = null;
+	private Byte extensionByte = null;
+	private Byte pistonByte = null;
 	
 	@SuppressWarnings("deprecation")
 	public SPiston(Block block) {

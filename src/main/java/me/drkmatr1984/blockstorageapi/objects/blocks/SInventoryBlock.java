@@ -17,9 +17,9 @@ public class SInventoryBlock extends SBlock implements Serializable{
 	 */
 	private static final long serialVersionUID = -8304194076933725859L;
 	//info for storing Inventories
-	public byte inventoryData;
-	public String inventory;
-	public String inventoryType;
+	private Byte inventoryData = null;
+	private String inventory = null;
+	private String inventoryType = null;
 	
 	@SuppressWarnings("deprecation")
 	public SInventoryBlock(Block block) {

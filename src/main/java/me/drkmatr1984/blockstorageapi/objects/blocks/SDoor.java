@@ -3,10 +3,13 @@ package me.drkmatr1984.blockstorageapi.objects.blocks;
 import java.io.Serializable;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.Door;
+
+import me.drkmatr1984.blockstorageapi.objects.misc.SLocation;
 
 public class SDoor extends SBlock implements Serializable{
 
@@ -15,18 +18,12 @@ public class SDoor extends SBlock implements Serializable{
 	 */
 	private static final long serialVersionUID = -6114608404476236788L;
 	//Info for Storing Doors and their movements
-	public String doorTopWorld;
-	public String doorTopMat;
-	public int doorTopX;
-	public int doorTopY;
-	public int doorTopZ;
-	public byte doorTopData;
-	public String doorBotWorld;
-	public String doorBotMat;
-	public int doorBotX;
-	public int doorBotY;
-	public int doorBotZ;
-	public byte doorBotData;
+	private SLocation topLocation = null;
+	private String doorTopMat = null;
+	private Byte doorTopData = null;
+	private SLocation botLocation = null;
+	private String doorBotMat = null;
+	private Byte doorBotData = null;
 	
 	@SuppressWarnings("deprecation")
 	public SDoor(Block block) {
@@ -42,16 +39,10 @@ public class SDoor extends SBlock implements Serializable{
 				bottomHalf = block.getState().getBlock();
 				topHalf = block.getState().getBlock().getRelative(BlockFace.UP);
 			}
-			doorTopWorld = topHalf.getLocation().getWorld().getName().toString();		
-			doorTopX = topHalf.getLocation().getBlockX();
-			doorTopY = topHalf.getLocation().getBlockY();
-			doorTopZ = topHalf.getLocation().getBlockZ();
+			topLocation = new SLocation(topHalf.getLocation());		
 			doorTopMat = topHalf.getType().name().toString();
 			doorTopData = topHalf.getData();
-			doorBotWorld = bottomHalf.getLocation().getWorld().getName().toString();		
-			doorBotX = bottomHalf.getLocation().getBlockX();
-			doorBotY = bottomHalf.getLocation().getBlockY();
-			doorBotZ = bottomHalf.getLocation().getBlockZ();
+			botLocation = new SLocation(bottomHalf.getLocation());
 			doorBotMat = bottomHalf.getType().name().toString();
 			doorBotData = bottomHalf.getData();			
 		}
@@ -71,16 +62,10 @@ public class SDoor extends SBlock implements Serializable{
 				bottomHalf = block.getState().getBlock();
 				topHalf = block.getState().getBlock().getRelative(BlockFace.UP);
 			}
-			doorTopWorld = topHalf.getLocation().getWorld().getName().toString();		
-			doorTopX = topHalf.getLocation().getBlockX();
-			doorTopY = topHalf.getLocation().getBlockY();
-			doorTopZ = topHalf.getLocation().getBlockZ();
+			topLocation = new SLocation(topHalf.getLocation());
 			doorTopMat = topHalf.getType().name().toString();
 			doorTopData = topHalf.getData();
-			doorBotWorld = bottomHalf.getLocation().getWorld().getName().toString();		
-			doorBotX = bottomHalf.getLocation().getBlockX();
-			doorBotY = bottomHalf.getLocation().getBlockY();
-			doorBotZ = bottomHalf.getLocation().getBlockZ();
+			botLocation = new SLocation(bottomHalf.getLocation());
 			doorBotMat = bottomHalf.getType().name().toString();
 			doorBotData = bottomHalf.getData();			
 		}
@@ -101,16 +86,10 @@ public class SDoor extends SBlock implements Serializable{
 				bottomHalf = block.getState().getBlock();
 				topHalf = block.getState().getBlock().getRelative(BlockFace.UP);
 			}
-			doorTopWorld = topHalf.getLocation().getWorld().getName().toString();		
-			doorTopX = topHalf.getLocation().getBlockX();
-			doorTopY = topHalf.getLocation().getBlockY();
-			doorTopZ = topHalf.getLocation().getBlockZ();
+			topLocation = new SLocation(topHalf.getLocation());
 			doorTopMat = topHalf.getType().name().toString();
 			doorTopData = topHalf.getData();
-			doorBotWorld = bottomHalf.getLocation().getWorld().getName().toString();		
-			doorBotX = bottomHalf.getLocation().getBlockX();
-			doorBotY = bottomHalf.getLocation().getBlockY();
-			doorBotZ = bottomHalf.getLocation().getBlockZ();
+			botLocation = new SLocation(bottomHalf.getLocation());
 			doorBotMat = bottomHalf.getType().name().toString();
 			doorBotData = bottomHalf.getData();			
 		}
@@ -131,18 +110,36 @@ public class SDoor extends SBlock implements Serializable{
 				bottomHalf = block.getState().getBlock();
 				topHalf = block.getState().getBlock().getRelative(BlockFace.UP);
 			}
-			doorTopWorld = topHalf.getLocation().getWorld().getName().toString();		
-			doorTopX = topHalf.getLocation().getBlockX();
-			doorTopY = topHalf.getLocation().getBlockY();
-			doorTopZ = topHalf.getLocation().getBlockZ();
+			topLocation = new SLocation(topHalf.getLocation());
 			doorTopMat = topHalf.getType().name().toString();
 			doorTopData = topHalf.getData();
-			doorBotWorld = bottomHalf.getLocation().getWorld().getName().toString();		
-			doorBotX = bottomHalf.getLocation().getBlockX();
-			doorBotY = bottomHalf.getLocation().getBlockY();
-			doorBotZ = bottomHalf.getLocation().getBlockZ();
+			botLocation = new SLocation(bottomHalf.getLocation());
 			doorBotMat = bottomHalf.getType().name().toString();
 			doorBotData = bottomHalf.getData();			
 		}
+	}
+	
+	public Location getTopLocation() {
+		return this.topLocation.toLocation();
+	}
+	
+	public Location getBotLocation() {
+		return this.botLocation.toLocation();
+	}
+	
+	public Material getTopType() {
+		return Material.valueOf(this.doorTopMat);
+	}
+	
+	public Material getBotType() {
+		return Material.valueOf(this.doorBotMat);
+	}
+	
+	public byte getTopByteData() {
+		return this.doorTopData;
+	}
+	
+	public byte getBotByteData() {
+		return this.doorBotData;
 	}
 }

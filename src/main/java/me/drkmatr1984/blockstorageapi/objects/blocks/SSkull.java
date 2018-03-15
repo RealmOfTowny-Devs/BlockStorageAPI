@@ -14,8 +14,9 @@ public class SSkull extends SBlock implements Serializable{
 	 */
 	private static final long serialVersionUID = -8238239120462937636L;
 	//Info for Storing Skulls
-	public String skullType;
-	public String skullOwner = "";
+	private Boolean hasOwner = false;
+	private String skullType = null;
+	private String skullOwner = null;
 	
 	public SSkull(Block block) {
 		super(block);
@@ -23,6 +24,7 @@ public class SSkull extends SBlock implements Serializable{
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
 			if(skull.hasOwner()){
+				hasOwner = skull.hasOwner();
 				skullOwner = skull.getOwningPlayer().toString();
 			}
 		}
@@ -34,6 +36,7 @@ public class SSkull extends SBlock implements Serializable{
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
 			if(skull.hasOwner()){
+				hasOwner = skull.hasOwner();
 				skullOwner = skull.getOwningPlayer().toString();
 			}
 		}
@@ -46,6 +49,7 @@ public class SSkull extends SBlock implements Serializable{
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
 			if(skull.hasOwner()){
+				hasOwner = skull.hasOwner();
 				skullOwner = skull.getOwningPlayer().toString();
 			}
 		}
@@ -58,6 +62,7 @@ public class SSkull extends SBlock implements Serializable{
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
 			if(skull.hasOwner()){
+				hasOwner = skull.hasOwner();
 				skullOwner = skull.getOwningPlayer().toString();
 			}
 		}

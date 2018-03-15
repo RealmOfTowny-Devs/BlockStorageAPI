@@ -55,4 +55,8 @@ public class SLocation implements Serializable
 		return Bukkit.getServer().getWorld(this.world);
 	}
 	
+	public Location toLocation() {
+		return new Location(this.getWorld(), this.x, this.y, this.z, this.yaw, this.pitch);
+	}
+	
 }

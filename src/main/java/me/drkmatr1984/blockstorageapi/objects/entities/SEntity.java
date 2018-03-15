@@ -10,7 +10,11 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.util.Vector;
+
 import me.drkmatr1984.blockstorageapi.objects.misc.SLocation;
+import me.drkmatr1984.blockstorageapi.objects.misc.SVector;
 
 public class SEntity implements Serializable{
 
@@ -21,6 +25,7 @@ public class SEntity implements Serializable{
 	private UUID uid = null;
 	private UUID killingEntity = null;
 	private UUID passenger = null;
+	private UUID vehicle = null;
 	private List<UUID> passengers = null;
 	private SLocation location = null;
 	private Integer fireTicks = null;
@@ -33,6 +38,9 @@ public class SEntity implements Serializable{
 	private Double width = null;
 	private Integer portalCooldown = null;
 	private Set<String> scoreboardTags = null;
+	private Integer ticksLived = null;
+	private String entityType = null;
+	private SVector velocity = null;
 	
 	@SuppressWarnings("deprecation")
 	public SEntity(Entity entity) {
@@ -61,7 +69,10 @@ public class SEntity implements Serializable{
 				scoreboardTags.add(s);
 			}
 		}
-		
+		ticksLived = entity.getTicksLived();
+		entityType = entity.getType().toString();
+		vehicle = entity.getVehicle().getUniqueId();
+		velocity = new SVector(entity.getVelocity());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -91,6 +102,10 @@ public class SEntity implements Serializable{
 				scoreboardTags.add(s);
 			}
 		}
+		ticksLived = entity.getTicksLived();
+		entityType = entity.getType().toString();
+		vehicle = entity.getVehicle().getUniqueId();
+		velocity = new SVector(entity.getVelocity());
 	}
 	
 	public World getWorld() {
@@ -129,7 +144,91 @@ public class SEntity implements Serializable{
 	}
 	
 	public int getMaxFireTicks() {
-		return this.getMaxFireTicks();
+		return this.maxFireTicks;
 	}
 	
+	public Entity getPassenger() {
+		for (World world : Bukkit.getWorlds()) {
+			for (Entity entity : world.getEntities()) {
+				if (entity.getUniqueId().equals(this.passenger)){
+					return entity;
+	            }
+			}
+	    }
+	    return null;
+	}
+	
+	public List<Entity> getPassengers() {
+		if(this.passengers!=null && (!(this.passengers.isEmpty()))) {
+			List<Entity> passengersList = new ArrayList<Entity>();
+			for (World world : Bukkit.getWorlds()) {
+				for (Entity entity : world.getEntities()) {
+					for(UUID id : this.passengers) {
+						if (entity.getUniqueId().equals(id)){
+							passengersList.add(entity);
+						}
+					}
+				}
+		    }
+			return passengersList;
+		}
+		
+	    return null;
+	}
+	
+	public Entity getVehicle() {
+		for (World world : Bukkit.getWorlds()) {
+			for (Entity entity : world.getEntities()) {
+				if (entity.getUniqueId().equals(this.vehicle)){
+					return entity;
+	            }
+			}
+	    }
+	    return null;
+	}
+	
+	public String getCustomName() 
+	{
+		return this.customName;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getEntityId() {
+		return this.id;
+	}
+	
+	public float getFallDistance() {
+		return this.fallDistance;
+	}
+	
+	public double getHeight() {
+		return this.height;
+	}
+	
+	public double getWidth() {
+		return this.width;
+	}
+	
+	public int getPortalCooldown() {
+		return this.portalCooldown;
+	}
+	
+	public Set<String> getScoreboardTags() {
+		return this.scoreboardTags;
+	}
+	
+	public int getTicksLived() {
+		return this.ticksLived;
+	}
+	
+	public EntityType getType() {
+		return EntityType.valueOf(entityType);
+	}
+	
+	public Vector getVelocity() {
+		return this.velocity.toVector();
+	}
 }
