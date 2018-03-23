@@ -1,13 +1,17 @@
 package me.drkmatr1984.blockstorageapi.objects.blocks;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import me.drkmatr1984.blockstorageapi.utils.ChatUtils;
 import me.drkmatr1984.blockstorageapi.utils.InventoryUtil;
 
 public class SInventoryBlock extends SBlock implements Serializable{
@@ -65,5 +69,22 @@ public class SInventoryBlock extends SBlock implements Serializable{
 			ItemStack[] inv = ((InventoryHolder) block.getState()).getInventory().getContents();
 			inventory = InventoryUtil.toBase64(inv);			
 		}
+	}
+	
+	public byte getByteData() {
+		return this.inventoryData;
+	}
+	
+	public InventoryType getInventoryType() {
+		return InventoryType.valueOf(this.inventoryType);
+	}
+	
+	public Inventory getInventory() {
+		try {
+			return InventoryUtil.inventoryFromBase64(this.inventory);
+		} catch (IOException e) {
+			ChatUtils.sendColoredLog("&cERROR: &eCannot de-serialize Inventory");
+		}
+		return null;
 	}
 }

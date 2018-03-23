@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 public class SSpawner extends SBlock implements Serializable{
 
@@ -53,5 +54,13 @@ public class SSpawner extends SBlock implements Serializable{
 			entityType = spawner.getSpawnedType().toString();
 			delay = spawner.getDelay();
 		}
+	}
+	
+	public EntityType getSpawnedType() {
+		return EntityType.valueOf(this.entityType);
+	}
+	
+	public int getDelay() {
+		return this.delay;
 	}
 }

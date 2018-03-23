@@ -1,11 +1,20 @@
 package me.drkmatr1984.blockstorageapi.objects.blocks;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.SkullType;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+
+import com.mojang.authlib.GameProfile;
+
+import me.drkmatr1984.blockstorageapi.utils.SkullUtils;
+import me.drkmatr1984.blockstorageapi.utils.UUIDUtils;
 
 public class SSkull extends SBlock implements Serializable{
 
@@ -17,15 +26,19 @@ public class SSkull extends SBlock implements Serializable{
 	private Boolean hasOwner = false;
 	private String skullType = null;
 	private String skullOwner = null;
+	private String skullUrl = null;
+	private String rotation = null;
 	
 	public SSkull(Block block) {
 		super(block);
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
+			skullUrl = SkullUtils.getSkullURL(block);
+			rotation = skull.getRotation().toString();
 			if(skull.hasOwner()){
 				hasOwner = skull.hasOwner();
-				skullOwner = skull.getOwningPlayer().toString();
+				skullOwner = skull.getOwningPlayer().getUniqueId().toString();
 			}
 		}
 	}
@@ -35,9 +48,11 @@ public class SSkull extends SBlock implements Serializable{
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
+			skullUrl = SkullUtils.getSkullURL(block);
+			rotation = skull.getRotation().toString();
 			if(skull.hasOwner()){
 				hasOwner = skull.hasOwner();
-				skullOwner = skull.getOwningPlayer().toString();
+				skullOwner = skull.getOwningPlayer().getUniqueId().toString();
 			}
 		}
 	}
@@ -48,9 +63,11 @@ public class SSkull extends SBlock implements Serializable{
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
+			skullUrl = SkullUtils.getSkullURL(block);
+			rotation = skull.getRotation().toString();
 			if(skull.hasOwner()){
 				hasOwner = skull.hasOwner();
-				skullOwner = skull.getOwningPlayer().toString();
+				skullOwner = skull.getOwningPlayer().getUniqueId().toString();
 			}
 		}
 	}
@@ -61,10 +78,46 @@ public class SSkull extends SBlock implements Serializable{
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
+			skullUrl = SkullUtils.getSkullURL(block);
+			rotation = skull.getRotation().toString();
 			if(skull.hasOwner()){
 				hasOwner = skull.hasOwner();
-				skullOwner = skull.getOwningPlayer().toString();
+				skullOwner = skull.getOwningPlayer().getUniqueId().toString();
 			}
 		}
 	}
+	
+	public boolean hasOwner() {
+		return this.hasOwner;
+	}
+	
+	public SkullType getSkullType() {
+		return SkullType.valueOf(this.skullType);
+	}
+	
+	public OfflinePlayer getOwningPlayer() {
+		return UUIDUtils.getOfflinePlayerfromUUID(UUID.fromString(skullOwner));
+	}
+	
+	public GameProfile getGameProfile() {
+		if(this.hasOwner) {
+			return SkullUtils.getGameProfile(getOwningPlayer());
+		}else if(SkullUtils.getNonPlayerProfile(this.skullUrl)!=null){
+			return SkullUtils.getNonPlayerProfile(this.skullUrl);
+		}else {
+			return null;
+		}
+	}
+	
+	public BlockFace getRotation() {
+		return BlockFace.valueOf(this.rotation);
+	}
+	
+	/*
+	public ItemStack getItemStack() {
+		if(getSkullType().equals(SkullType.PLAYER)) {
+			return SkullUtils.
+		}
+	}
+	*/
 }

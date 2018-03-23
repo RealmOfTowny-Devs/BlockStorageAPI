@@ -21,6 +21,7 @@ public class STileEntity extends SEntity implements Serializable{
 	private Integer blockX = null;
 	private Integer blockY = null;
 	private Integer blockZ = null;
+	private String tileEntityType = null;
 	
 	public STileEntity(Entity entity) {
 		super(entity);

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.PistonExtensionMaterial;
 
@@ -73,4 +74,19 @@ public class SPiston extends SBlock implements Serializable{
 		}
 	}
 	
+	public BlockFace getFacing() {
+		return BlockFace.valueOf(this.face);
+	}
+	
+	public boolean isSticky() {
+		return this.isSticky;
+	}
+	
+	public byte getExtensionData() {
+		return this.extensionByte;
+	}
+	
+	public byte getPistonData() {
+		return this.pistonByte;
+	}
 }

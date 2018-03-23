@@ -72,4 +72,8 @@ public class SSign extends SBlock implements Serializable{
 		}
 	}
 	
+	public List<String> getLines() {
+		return this.signLines;
+	}
+	
 }

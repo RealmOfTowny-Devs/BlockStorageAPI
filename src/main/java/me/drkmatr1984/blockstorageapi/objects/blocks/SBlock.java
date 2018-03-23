@@ -11,6 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.MaterialData;
 
+import me.drkmatr1984.blockstorageapi.enums.BlockTypes;
 import me.drkmatr1984.blockstorageapi.objects.blocks.blockdata.SMaterialData;
 import me.drkmatr1984.blockstorageapi.objects.misc.SLocation;
 
@@ -23,7 +24,8 @@ public class SBlock implements Serializable{
 	private String mat = null;
 	private UUID breakingEntity = null;
 	private Byte data = null;
-	private SMaterialData materialData = null;	
+	private SMaterialData materialData = null;
+	private String blockType = null;
 	/*
 	//info for storing itemframes
 	public String itemInFrame;
