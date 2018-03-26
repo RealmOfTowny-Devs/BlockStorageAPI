@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.drkmatr1984</groupId>
-    <artifactId>BlockStorageAPI</artifactId>
+    <artifactId>StorageAPI</artifactId>
     <version>0.1</version>
     <name>BlockStorageAPI</name>
 
