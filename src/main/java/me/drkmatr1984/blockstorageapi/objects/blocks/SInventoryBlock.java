@@ -11,13 +11,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import me.drkmatr1984.blockstorageapi.enums.BlockTypes;
 import me.drkmatr1984.blockstorageapi.utils.ChatUtils;
 import me.drkmatr1984.blockstorageapi.utils.InventoryUtil;
 
-public class SInventoryBlock extends SBlock implements Serializable{
+public class SInventoryBlock extends SBaseBlock implements Serializable{
 
 	/**
-	 * 
+	 * 	   Constructor for serializable inventory holder blocks
 	 */
 	private static final long serialVersionUID = -8304194076933725859L;
 	//info for storing Inventories
@@ -27,7 +28,7 @@ public class SInventoryBlock extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SInventoryBlock(Block block) {
-		super(block);
+		super(block, BlockTypes.INVENTORY);
 		if(block.getState() instanceof InventoryHolder) {
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
@@ -38,7 +39,7 @@ public class SInventoryBlock extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SInventoryBlock(Block block, Entity entity) {
-		super(block, entity);
+		super(block, entity, BlockTypes.INVENTORY);
 		if(block.getState() instanceof InventoryHolder) {
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
@@ -49,7 +50,7 @@ public class SInventoryBlock extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SInventoryBlock(Location loc) {
-		super(loc);
+		super(loc, BlockTypes.INVENTORY);
 		Block block = loc.getBlock();
 		if(block.getState() instanceof InventoryHolder) {
 			inventoryData = block.getState().getData().getData();
@@ -61,7 +62,7 @@ public class SInventoryBlock extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SInventoryBlock(Location loc, Entity entity) {
-		super(loc, entity);
+		super(loc, entity, BlockTypes.INVENTORY);
 		Block block = loc.getBlock();
 		if(block.getState() instanceof InventoryHolder) {
 			inventoryData = block.getState().getData().getData();

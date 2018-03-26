@@ -13,13 +13,14 @@ import org.bukkit.entity.Entity;
 
 import com.mojang.authlib.GameProfile;
 
+import me.drkmatr1984.blockstorageapi.enums.BlockTypes;
 import me.drkmatr1984.blockstorageapi.utils.SkullUtils;
 import me.drkmatr1984.blockstorageapi.utils.UUIDUtils;
 
-public class SSkull extends SBlock implements Serializable{
+public class SSkull extends SBaseBlock implements Serializable{
 
 	/**
-	 * 
+	 *     Constructor for serializable skull blocks
 	 */
 	private static final long serialVersionUID = -8238239120462937636L;
 	//Info for Storing Skulls
@@ -30,7 +31,7 @@ public class SSkull extends SBlock implements Serializable{
 	private String rotation = null;
 	
 	public SSkull(Block block) {
-		super(block);
+		super(block, BlockTypes.SKULL);
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
@@ -44,7 +45,7 @@ public class SSkull extends SBlock implements Serializable{
 	}
 	
 	public SSkull(Block block, Entity entity) {
-		super(block, entity);
+		super(block, entity, BlockTypes.SKULL);
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
 			skullType = skull.getSkullType().name().toString();
@@ -58,7 +59,7 @@ public class SSkull extends SBlock implements Serializable{
 	}
 	
 	public SSkull(Location loc) {
-		super(loc);
+		super(loc, BlockTypes.SKULL);
 		Block block = loc.getBlock();
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();
@@ -73,7 +74,7 @@ public class SSkull extends SBlock implements Serializable{
 	}
 	
 	public SSkull(Location loc, Entity entity) {
-		super(loc, entity);
+		super(loc, entity, BlockTypes.SKULL);
 		Block block = loc.getBlock();
 		if(block.getState() instanceof Skull){
 			Skull skull = (Skull) block.getState();

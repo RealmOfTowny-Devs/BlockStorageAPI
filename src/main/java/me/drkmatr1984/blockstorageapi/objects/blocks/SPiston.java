@@ -8,10 +8,12 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.PistonExtensionMaterial;
 
-public class SPiston extends SBlock implements Serializable{
+import me.drkmatr1984.blockstorageapi.enums.BlockTypes;
+
+public class SPiston extends SBaseBlock implements Serializable{
 
 	/**
-	 * 
+	 *     Constructor for serializable Piston Blocks
 	 */
 	private static final long serialVersionUID = -885579843478491099L;
 	//info for storing Pistons
@@ -22,7 +24,7 @@ public class SPiston extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SPiston(Block block) {
-		super(block);
+		super(block, BlockTypes.PISTON);
 		if (block.getState().getData() instanceof PistonExtensionMaterial) {
 			PistonExtensionMaterial extension = (PistonExtensionMaterial) block.getState().getData();
 			face = extension.getFacing().name().toString();
@@ -35,7 +37,7 @@ public class SPiston extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SPiston(Block block, Entity entity) {
-		super(block);
+		super(block, BlockTypes.PISTON);
 		if (block.getState().getData() instanceof PistonExtensionMaterial) {
 			PistonExtensionMaterial extension = (PistonExtensionMaterial) block.getState().getData();
 			face = extension.getFacing().name().toString();
@@ -48,7 +50,7 @@ public class SPiston extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SPiston(Location loc) {
-		super(loc);
+		super(loc, BlockTypes.PISTON);
 		Block block = loc.getBlock();
 		if (block.getState().getData() instanceof PistonExtensionMaterial) {
 			PistonExtensionMaterial extension = (PistonExtensionMaterial) block.getState().getData();
@@ -62,7 +64,7 @@ public class SPiston extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SPiston(Location loc, Entity entity) {
-		super(loc, entity);
+		super(loc, entity, BlockTypes.PISTON);
 		Block block = loc.getBlock();
 		if (block.getState().getData() instanceof PistonExtensionMaterial) {
 			PistonExtensionMaterial extension = (PistonExtensionMaterial) block.getState().getData();

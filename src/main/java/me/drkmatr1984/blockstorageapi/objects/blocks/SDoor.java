@@ -9,12 +9,13 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.Door;
 
+import me.drkmatr1984.blockstorageapi.enums.BlockTypes;
 import me.drkmatr1984.blockstorageapi.objects.misc.SLocation;
 
-public class SDoor extends SBlock implements Serializable{
+public class SDoor extends SBaseBlock implements Serializable{
 
 	/**
-	 * 
+	 *      Constructor for serializable door blocks
 	 */
 	private static final long serialVersionUID = -6114608404476236788L;
 	//Info for Storing Doors and their movements
@@ -27,7 +28,7 @@ public class SDoor extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SDoor(Block block) {
-		super(block);
+		super(block, BlockTypes.DOOR);
 		if(block.getState().getData() instanceof Door){
 			Door door = (Door) block.getState().getData();
 			Block topHalf;
@@ -50,7 +51,7 @@ public class SDoor extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SDoor(Block block, Entity entity) {
-		super(block, entity);
+		super(block, entity, BlockTypes.DOOR);
 		if(block.getState().getData() instanceof Door){
 			Door door = (Door) block.getState().getData();
 			Block topHalf;
@@ -73,7 +74,7 @@ public class SDoor extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SDoor(Location loc) {		
-		super(loc);
+		super(loc, BlockTypes.DOOR);
 		Block block = loc.getBlock();
 		if(block.getState().getData() instanceof Door){
 			Door door = (Door) block.getState().getData();
@@ -97,7 +98,7 @@ public class SDoor extends SBlock implements Serializable{
 	
 	@SuppressWarnings("deprecation")
 	public SDoor(Location loc, Entity entity) {		
-		super(loc, entity);
+		super(loc, entity, BlockTypes.DOOR);
 		Block block = loc.getBlock();
 		if(block.getState().getData() instanceof Door){
 			Door door = (Door) block.getState().getData();
