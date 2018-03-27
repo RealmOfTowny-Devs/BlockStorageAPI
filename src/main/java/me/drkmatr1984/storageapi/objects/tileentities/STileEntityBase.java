@@ -8,9 +8,9 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
 import me.drkmatr1984.storageapi.enums.TileEntityTypes;
-import me.drkmatr1984.storageapi.objects.entities.SEntity;
+import me.drkmatr1984.storageapi.objects.entities.SEntityBase;
 
-public abstract class STileEntityBase extends SEntity implements Serializable{
+public abstract class STileEntityBase extends SEntityBase implements Serializable{
 
 	/**
 	 *     Abstract base constructor for serializing Tile Entities

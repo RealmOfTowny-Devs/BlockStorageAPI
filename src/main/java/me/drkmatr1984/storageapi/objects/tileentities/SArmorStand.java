@@ -8,8 +8,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
+import me.drkmatr1984.base64utilslib.InventoryBase64Utils;
 import me.drkmatr1984.storageapi.enums.TileEntityTypes;
-import me.drkmatr1984.storageapi.utils.InventoryUtil;
 
 public class SArmorStand extends STileEntityBase implements Serializable{
 
@@ -76,22 +76,22 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 		rightLegPoseY = entity.getRightLegPose().getY();
 		rightLegPoseZ = entity.getRightLegPose().getZ();
 		if(entity.getBoots()!=null) {
-			boots = InventoryUtil.toBase64(entity.getBoots());
+			boots = InventoryBase64Utils.toBase64(entity.getBoots());
 		}
 		if(entity.getLeggings()!=null) {
-			leggings = InventoryUtil.toBase64(entity.getLeggings());
+			leggings = InventoryBase64Utils.toBase64(entity.getLeggings());
 		}
 		if(entity.getChestplate()!=null) {
-			chestplate = InventoryUtil.toBase64(entity.getChestplate());
+			chestplate = InventoryBase64Utils.toBase64(entity.getChestplate());
 		}
 		if(entity.getHelmet()!=null) {
-			helmet = InventoryUtil.toBase64(entity.getHelmet());
+			helmet = InventoryBase64Utils.toBase64(entity.getHelmet());
 		}
 		if(entity.getEquipment().getItemInMainHand()!=null) {
-			itemInMainHand = InventoryUtil.toBase64(entity.getEquipment().getItemInMainHand());
+			itemInMainHand = InventoryBase64Utils.toBase64(entity.getEquipment().getItemInMainHand());
 		}
 		if(entity.getEquipment().getItemInOffHand()!=null) {
-			itemInOffHand = InventoryUtil.toBase64(entity.getEquipment().getItemInOffHand());
+			itemInOffHand = InventoryBase64Utils.toBase64(entity.getEquipment().getItemInOffHand());
 		}		
 	}
 	
@@ -123,22 +123,22 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 		rightLegPoseY = entity.getRightLegPose().getY();
 		rightLegPoseZ = entity.getRightLegPose().getZ();
 		if(entity.getBoots()!=null) {
-			boots = InventoryUtil.toBase64(entity.getBoots());
+			boots = InventoryBase64Utils.toBase64(entity.getBoots());
 		}
 		if(entity.getLeggings()!=null) {
-			leggings = InventoryUtil.toBase64(entity.getLeggings());
+			leggings = InventoryBase64Utils.toBase64(entity.getLeggings());
 		}
 		if(entity.getChestplate()!=null) {
-			chestplate = InventoryUtil.toBase64(entity.getChestplate());
+			chestplate = InventoryBase64Utils.toBase64(entity.getChestplate());
 		}
 		if(entity.getHelmet()!=null) {
-			helmet = InventoryUtil.toBase64(entity.getHelmet());
+			helmet = InventoryBase64Utils.toBase64(entity.getHelmet());
 		}
 		if(entity.getEquipment().getItemInMainHand()!=null) {
-			itemInMainHand = InventoryUtil.toBase64(entity.getEquipment().getItemInMainHand());
+			itemInMainHand = InventoryBase64Utils.toBase64(entity.getEquipment().getItemInMainHand());
 		}
 		if(entity.getEquipment().getItemInOffHand()!=null) {
-			itemInOffHand = InventoryUtil.toBase64(entity.getEquipment().getItemInOffHand());
+			itemInOffHand = InventoryBase64Utils.toBase64(entity.getEquipment().getItemInOffHand());
 		}		
 	}
 	
@@ -189,7 +189,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getBoots() {
 		if(boots!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(boots);
+				return InventoryBase64Utils.stackFromBase64(boots);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -201,7 +201,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getLeggings() {
 		if(leggings!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(leggings);
+				return InventoryBase64Utils.stackFromBase64(leggings);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -213,7 +213,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getChestplate() {
 		if(chestplate!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(chestplate);
+				return InventoryBase64Utils.stackFromBase64(chestplate);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -225,7 +225,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getHelmet() {
 		if(helmet!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(helmet);
+				return InventoryBase64Utils.stackFromBase64(helmet);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -237,7 +237,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getItemInMainHand() {
 		if(itemInMainHand!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(itemInMainHand);
+				return InventoryBase64Utils.stackFromBase64(itemInMainHand);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -249,7 +249,7 @@ public class SArmorStand extends STileEntityBase implements Serializable{
 	public ItemStack getItemInOffHand() {
 		if(itemInOffHand!=null) {
 			try {
-				return InventoryUtil.stackFromBase64(itemInOffHand);
+				return InventoryBase64Utils.stackFromBase64(itemInOffHand);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

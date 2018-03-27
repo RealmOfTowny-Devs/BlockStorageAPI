@@ -16,10 +16,10 @@ import org.bukkit.util.Vector;
 import me.drkmatr1984.storageapi.objects.misc.SLocation;
 import me.drkmatr1984.storageapi.objects.misc.SVector;
 
-public class SEntity implements Serializable{
+public abstract class SEntityBase implements Serializable{
 
 	/**
-	 * 
+	 *    Abstract constructor for generic serializable Entity
 	 */
 	private static final long serialVersionUID = -3687132256061126706L;
 	private UUID uid = null;
@@ -43,7 +43,7 @@ public class SEntity implements Serializable{
 	private SVector velocity = null;
 	
 	@SuppressWarnings("deprecation")
-	public SEntity(Entity entity) {
+	public SEntityBase(Entity entity) {
 		uid = entity.getUniqueId();
 		this.killingEntity = null;
 		location = new SLocation(entity.getLocation());
@@ -76,7 +76,7 @@ public class SEntity implements Serializable{
 	}
 	
 	@SuppressWarnings("deprecation")
-	public SEntity(Entity entity, Entity killingEntity) {
+	public SEntityBase(Entity entity, Entity killingEntity) {
 		uid = entity.getUniqueId();
 		this.killingEntity = killingEntity.getUniqueId();
 		location = new SLocation(entity.getLocation());

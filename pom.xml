@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.drkmatr1984</groupId>
-    <artifactId>StorageAPI</artifactId>
+    <artifactId>storageapi</artifactId>
     <version>0.1</version>
-    <name>BlockStorageAPI</name>
+    <name>StorageAPI</name>
 
     <!-- Properties -->
     <properties>

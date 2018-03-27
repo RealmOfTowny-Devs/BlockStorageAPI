@@ -33,4 +33,9 @@ public class SMaterialData implements Serializable
 	public int getItemTypeId() {
 		return this.typeId;
 	}
+	
+	@SuppressWarnings("deprecation")
+	public MaterialData toMaterialData() {
+		return new MaterialData(getItemType(), getData());
+	}
 }

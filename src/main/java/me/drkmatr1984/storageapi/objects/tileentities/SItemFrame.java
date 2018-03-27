@@ -9,8 +9,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
 
+import me.drkmatr1984.base64utilslib.InventoryBase64Utils;
 import me.drkmatr1984.storageapi.enums.TileEntityTypes;
-import me.drkmatr1984.storageapi.utils.InventoryUtil;
 
 public class SItemFrame extends STileEntityBase implements Serializable
 {
@@ -29,7 +29,7 @@ public class SItemFrame extends STileEntityBase implements Serializable
 
 	public SItemFrame(ItemFrame entity) {
 		super(entity, TileEntityTypes.ITEM_FRAME);
-		itemInFrame = InventoryUtil.toBase64(entity.getItem());
+		itemInFrame = InventoryBase64Utils.toBase64(entity.getItem());
 		rotation = entity.getRotation().name().toString();
 		face = entity.getFacing().name().toString();
 		attachedFace = entity.getAttachedFace().name().toString();
@@ -37,7 +37,7 @@ public class SItemFrame extends STileEntityBase implements Serializable
 	
 	public SItemFrame(ItemFrame entity, Entity breakingEntity) {
 		super(entity, breakingEntity, TileEntityTypes.ITEM_FRAME);
-		itemInFrame = InventoryUtil.toBase64(entity.getItem());
+		itemInFrame = InventoryBase64Utils.toBase64(entity.getItem());
 		rotation = entity.getRotation().name().toString();
 		face = entity.getFacing().name().toString();
 		attachedFace = entity.getAttachedFace().name().toString();
@@ -45,7 +45,7 @@ public class SItemFrame extends STileEntityBase implements Serializable
 	
 	public ItemStack getItem() {
 		try {
-			return InventoryUtil.stackFromBase64(this.itemInFrame);
+			return InventoryBase64Utils.stackFromBase64(this.itemInFrame);
 		} catch (IOException e) {
 			return null;
 		}

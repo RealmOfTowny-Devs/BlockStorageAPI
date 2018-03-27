@@ -11,9 +11,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import me.drkmatr1984.base64utilslib.InventoryBase64Utils;
 import me.drkmatr1984.storageapi.enums.BlockTypes;
 import me.drkmatr1984.storageapi.utils.ChatUtils;
-import me.drkmatr1984.storageapi.utils.InventoryUtil;
 
 public class SInventoryBlock extends SBaseBlock implements Serializable{
 
@@ -33,7 +33,7 @@ public class SInventoryBlock extends SBaseBlock implements Serializable{
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
 			ItemStack[] inv = ((InventoryHolder) block.getState()).getInventory().getContents();
-			inventory = InventoryUtil.toBase64(inv);			
+			inventory = InventoryBase64Utils.toBase64(inv);			
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class SInventoryBlock extends SBaseBlock implements Serializable{
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
 			ItemStack[] inv = ((InventoryHolder) block.getState()).getInventory().getContents();
-			inventory = InventoryUtil.toBase64(inv);			
+			inventory = InventoryBase64Utils.toBase64(inv);			
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class SInventoryBlock extends SBaseBlock implements Serializable{
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
 			ItemStack[] inv = ((InventoryHolder) block.getState()).getInventory().getContents();
-			inventory = InventoryUtil.toBase64(inv);			
+			inventory = InventoryBase64Utils.toBase64(inv);			
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class SInventoryBlock extends SBaseBlock implements Serializable{
 			inventoryData = block.getState().getData().getData();
 			inventoryType = ((InventoryHolder) block.getState()).getInventory().getType().toString();
 			ItemStack[] inv = ((InventoryHolder) block.getState()).getInventory().getContents();
-			inventory = InventoryUtil.toBase64(inv);			
+			inventory = InventoryBase64Utils.toBase64(inv);			
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class SInventoryBlock extends SBaseBlock implements Serializable{
 	
 	public Inventory getInventory() {
 		try {
-			return InventoryUtil.inventoryFromBase64(this.inventory);
+			return InventoryBase64Utils.inventoryFromBase64(this.inventory);
 		} catch (IOException e) {
 			ChatUtils.sendColoredLog("&cERROR: &eCannot de-serialize Inventory");
 		}
