@@ -118,7 +118,7 @@ public class BlockBreakListener implements Listener{
 			sBlocks.add(new SBlock(block, breakingEntity));
 		}
 		blocks.add(block);
-		BlockBreakStorageEvent storageEvent = new BlockBreakStorageEvent(this.plugin, sBlocks, blocks);
+		BlockBreakStorageEvent storageEvent = new BlockBreakStorageEvent(this.plugin, breakingEntity, sBlocks, blocks);
 		Bukkit.getServer().getPluginManager().callEvent(storageEvent);
 		if(storageEvent.isCancelBreak()) {
 			event.setCancelled(true);

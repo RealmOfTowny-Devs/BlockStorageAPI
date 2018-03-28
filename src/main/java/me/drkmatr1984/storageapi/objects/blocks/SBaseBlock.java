@@ -75,6 +75,30 @@ public abstract class SBaseBlock implements Serializable{
 		blockType = type.toString();
 	}
 	
+	public SBaseBlock(Location loc, Entity entity, BlockTypes type, Material blockMat, Byte blockData, MaterialData materialData) {
+		location = new SLocation(loc);
+		mat = blockMat.name().toString();
+		data = blockData;
+		breakingEntity = null;
+		if(entity!=null) {
+			breakingEntity = entity.getUniqueId();
+		}
+		this.materialData = new SMaterialData(materialData);
+		blockType = type.toString();
+	}
+	
+	public SBaseBlock(Block block, Entity entity, BlockTypes type, Material blockMat, Byte blockData, MaterialData materialData) {
+		location = new SLocation(block.getLocation());
+		mat = blockMat.name().toString();
+		data = blockData;
+		breakingEntity = null;
+		if(entity!=null) {
+			breakingEntity = entity.getUniqueId();
+		}
+		this.materialData = new SMaterialData(materialData);
+		blockType = type.toString();
+	}
+	
 	public Block getBaseBlock(){
 		Location l = new Location(this.location.getWorld(), this.location.getX(), this.location.getY(), this.location.getZ());
 		return l.getBlock();
