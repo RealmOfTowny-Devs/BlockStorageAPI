@@ -13,9 +13,9 @@ import org.bukkit.entity.Entity;
 
 import com.mojang.authlib.GameProfile;
 
+import me.drkmatr1984.reflectionutils.SkullUtils;
+import me.drkmatr1984.reflectionutils.UUIDUtils;
 import me.drkmatr1984.storageapi.enums.BlockTypes;
-import me.drkmatr1984.storageapi.utils.SkullUtils;
-import me.drkmatr1984.storageapi.utils.UUIDUtils;
 
 public class SSkull extends SBaseBlock implements Serializable{
 

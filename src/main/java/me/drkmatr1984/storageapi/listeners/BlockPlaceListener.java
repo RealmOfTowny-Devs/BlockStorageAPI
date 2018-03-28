@@ -31,7 +31,7 @@ import me.drkmatr1984.storageapi.objects.blocks.SVine;
 public class BlockPlaceListener implements Listener
 {
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
 	public void onBlockPlace(BlockPlaceEvent event) {
 		SBaseBlock sBlock = null;
 		Entity placingEntity = (Entity) event.getPlayer();
