@@ -20,8 +20,6 @@ import org.bukkit.material.Attachable;
 import org.bukkit.material.Door;
 import org.bukkit.material.PistonExtensionMaterial;
 import org.bukkit.material.Vine;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import me.drkmatr1984.storageapi.events.BlockBreakStorageEvent;
 import me.drkmatr1984.storageapi.objects.blocks.SAttachable;
 import me.drkmatr1984.storageapi.objects.blocks.SBaseBlock;
@@ -36,12 +34,6 @@ import me.drkmatr1984.storageapi.objects.blocks.SVine;
 import me.drkmatr1984.storageapi.utils.Utils;
 
 public class BlockBreakListener implements Listener{
-	
-	private JavaPlugin plugin;
-	
-	public BlockBreakListener(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
 	public void onBlockBreak(BlockBreakEvent event){
@@ -118,7 +110,7 @@ public class BlockBreakListener implements Listener{
 			sBlocks.add(new SBlock(block, breakingEntity));
 		}
 		blocks.add(block);
-		BlockBreakStorageEvent storageEvent = new BlockBreakStorageEvent(this.plugin, breakingEntity, sBlocks, blocks);
+		BlockBreakStorageEvent storageEvent = new BlockBreakStorageEvent(breakingEntity, sBlocks, blocks);
 		Bukkit.getServer().getPluginManager().callEvent(storageEvent);
 		if(storageEvent.isCancelBreak()) {
 			event.setCancelled(true);

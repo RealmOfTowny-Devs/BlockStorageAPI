@@ -1,5 +1,5 @@
 name: StorageAPI
 version: 0.1
-main: me.drkmatr1984.storageapi.Storage
+main: me.drkmatr1984.storageapi.API
 description: A library that aims to serialize basically anything in minecraft
 author: drkmatr1984
