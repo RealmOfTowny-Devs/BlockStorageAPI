@@ -1,5 +1,6 @@
 package me.drkmatr1984.storageapi.objects.entities;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.Vector;
 
+import me.drkmatr1984.base64utilslib.EntityBase64Utils;
 import me.drkmatr1984.storageapi.objects.misc.SLocation;
 import me.drkmatr1984.storageapi.objects.misc.SVector;
 
@@ -230,5 +232,17 @@ public abstract class SEntityBase implements Serializable{
 	
 	public Vector getVelocity() {
 		return this.velocity.toVector();
+	}
+	
+	public String serialize() {
+		return EntityBase64Utils.entityToBase64(this);
+	}
+	
+	public static SEntityBase deSerialize(String base64){
+		try {
+			return EntityBase64Utils.entityFromBase64(base64);
+		} catch (IOException e) {
+			return null;
+		}
 	}
 }

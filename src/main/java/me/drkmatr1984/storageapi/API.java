@@ -75,15 +75,4 @@ public class API
 		return getSBlock(loc.getBlock(), editingEntity);
 	}
 	
-	public String sblockToString(SBaseBlock sBlock) {
-		return BlockBase64Utils.blockToBase64(sBlock);
-	}
-	
-	public SBaseBlock stringToSBlock(String base64sBlock) {
-		try {
-			return BlockBase64Utils.blockFromBase64(base64sBlock);
-		} catch (IOException e) {
-			return null;
-		}
-	}
 }

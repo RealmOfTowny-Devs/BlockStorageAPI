@@ -1,8 +1,14 @@
 package me.drkmatr1984.storageapi.objects.misc;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 import org.bukkit.util.Vector;
+import org.bukkit.util.io.BukkitObjectInputStream;
+import org.bukkit.util.io.BukkitObjectOutputStream;
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class SVector implements Serializable
 {
@@ -58,4 +64,28 @@ public class SVector implements Serializable
 		vector.setZ(this.doubleZ);
 		return vector;
     }
+    
+    public String serialize() {
+		try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            dataOutput.writeObject(this);        
+            dataOutput.close();
+            return Base64Coder.encodeLines(outputStream.toByteArray());
+        } catch (Exception e) {
+            throw new IllegalStateException("Unable to save location", e);
+        }
+	}
+	
+	public static SVector deSerialize(String base64) throws IOException {
+	     try {
+	            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(base64));
+	            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+	            SVector svector = (SVector)dataInput.readObject();
+	            dataInput.close();
+	            return svector;
+	     } catch (ClassNotFoundException | IOException e) {
+	            throw new IOException("Unable to decode class type.", e);
+	     }      	  
+	 }
 }

@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import me.drkmatr1984.storageapi.objects.blocks.SBaseBlock;
 
-public class StorageEvent extends Event {
+public abstract class StorageEvent extends Event {
 
 	private static final HandlerList handlerList = new HandlerList();
 	

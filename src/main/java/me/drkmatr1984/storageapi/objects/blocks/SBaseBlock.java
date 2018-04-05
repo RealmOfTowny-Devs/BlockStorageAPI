@@ -1,5 +1,6 @@
 package me.drkmatr1984.storageapi.objects.blocks;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.material.MaterialData;
 
+import me.drkmatr1984.base64utilslib.BlockBase64Utils;
 import me.drkmatr1984.storageapi.enums.BlockTypes;
 import me.drkmatr1984.storageapi.objects.blocks.blockdata.SMaterialData;
 import me.drkmatr1984.storageapi.objects.misc.SLocation;
@@ -157,4 +159,15 @@ public abstract class SBaseBlock implements Serializable{
 		return BlockTypes.valueOf(this.blockType);
 	}
 	
+	public String serialize() {
+		return BlockBase64Utils.blockToBase64(this);
+	}
+	
+	public static SBaseBlock deSerialize(String base64){
+		try {
+			return BlockBase64Utils.blockFromBase64(base64);
+		} catch (IOException e) {
+			return null;
+		}
+	}
 }
