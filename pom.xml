@@ -50,8 +50,6 @@
             <groupId>me.drkmatr1984</groupId>
             <artifactId>reflectionutils</artifactId>
             <version>0.2</version>
-            <type>jar</type>
-            <scope>provided</scope>
         </dependency>  
     </dependencies>
 

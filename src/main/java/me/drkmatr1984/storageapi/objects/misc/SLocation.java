@@ -1,11 +1,17 @@
 package me.drkmatr1984.storageapi.objects.misc;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.util.io.BukkitObjectInputStream;
+import org.bukkit.util.io.BukkitObjectOutputStream;
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class SLocation implements Serializable
 {
@@ -59,4 +65,28 @@ public class SLocation implements Serializable
 		return new Location(this.getWorld(), this.x, this.y, this.z, this.yaw, this.pitch);
 	}
 	
+	public String serialize() {
+		try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            dataOutput.writeObject(this);        
+            dataOutput.close();
+            return Base64Coder.encodeLines(outputStream.toByteArray());
+        } catch (Exception e) {
+            throw new IllegalStateException("Unable to save location", e);
+        }
+	}
+	
+	public static SLocation deSerialize(String base64) throws IOException {
+	     try {
+	            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(base64));
+	            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+	            SLocation slocation = (SLocation)dataInput.readObject();
+	            dataInput.close();
+	            return slocation;
+	     } catch (ClassNotFoundException | IOException e) {
+	            throw new IOException("Unable to decode class type.", e);
+	     }      	  
+	 }
+	    
 }
