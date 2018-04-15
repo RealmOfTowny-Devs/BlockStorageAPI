@@ -1,7 +1,5 @@
 package me.drkmatr1984.storageapi;
 
-import java.io.IOException;
-
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -15,7 +13,6 @@ import org.bukkit.material.Door;
 import org.bukkit.material.PistonExtensionMaterial;
 import org.bukkit.material.Vine;
 
-import me.drkmatr1984.base64utilslib.BlockBase64Utils;
 import me.drkmatr1984.storageapi.objects.blocks.SAttachable;
 import me.drkmatr1984.storageapi.objects.blocks.SBaseBlock;
 import me.drkmatr1984.storageapi.objects.blocks.SBlock;

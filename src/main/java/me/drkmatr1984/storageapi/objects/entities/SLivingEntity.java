@@ -3,6 +3,7 @@ package me.drkmatr1984.storageapi.objects.entities;
 import java.io.Serializable;
 
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 
 public class SLivingEntity extends SEntityBase implements Serializable 
 {
@@ -13,11 +14,11 @@ public class SLivingEntity extends SEntityBase implements Serializable
 	
 	private static final long serialVersionUID = -173277463815933569L;
 
-	public SLivingEntity(Entity entity) {
+	public SLivingEntity(LivingEntity entity) {
 		super(entity);
 	}
 	
-	public SLivingEntity(Entity entity, Entity killingEntity) {
+	public SLivingEntity(LivingEntity entity, Entity killingEntity) {
 		super(entity, killingEntity);
 	}
 	

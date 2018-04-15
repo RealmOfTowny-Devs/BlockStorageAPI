@@ -14,6 +14,7 @@ public class SBlock extends SBaseBlock implements Serializable
 	/**
 	 * 		Constructor for serializable regular Blocks
 	 */
+	
 	private static final long serialVersionUID = -4834696106573264703L;
 
 	public SBlock(Block block) {
